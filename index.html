@@ -5,27 +5,33 @@
   </body>
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
     const root = document.getElementById("root");
-    const h3 = React.createElement(
-      "h3",
-      {
-        onMouseEnter: () => console.log("mouse eneter"),
-      },
-      "Hello I'm a span"
-    );
-    const btn = React.createElement(
-      "button",
-      {
-        id: "btn",
-        style: {
-          backgroundColor: "tomato",
-        },
-        onClick: () => console.log("im clicked"),
-      },
-      "Click me"
-    );
-    const container = React.createElement("div", null, [h3, btn]);
-    ReactDOM.createRoot(root).render(container);
+
+    function App() {
+      const [minutes, setMinutes] = React.useState();
+      const onChange = (event) => {
+        setMinutes(event.target.value);
+      };
+      const [hours, setHours] = React.useState();
+      return (
+        <div>
+          <h1>Super Converter</h1>
+          <label htmlFor="minutes">Minutes</label>
+          <input
+            value={minutes}
+            id="minutes"
+            placeholder="Minutes"
+            type="number"
+            onChange={onChange}
+          />
+          <h4>You want to convert {minutes}</h4>
+          <label htmlFor="hours">Hours</label>
+          <input id="hours" placeholder="Hours" type="number" />
+        </div>
+      );
+    }
+    ReactDOM.createRoot(root).render(<App />);
   </script>
 </html>
