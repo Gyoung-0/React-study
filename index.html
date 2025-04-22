@@ -5,33 +5,39 @@
   </body>
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    const root = document.getElementById("root");
-
+    function Btn({ text, fontSize = 16}) {
+      console.log(text, "was rendered")
+      return (
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            fontSize,
+          }}
+        >
+          {text}
+        </button>
+      );
+    }
+    Btn.propTypes={
+      text: PropTypes.string.isRequired,
+      fontSize: PropTypes.number,
+    };
     function App() {
-      const [minutes, setMinutes] = React.useState();
-      const onChange = (event) => {
-        setMinutes(event.target.value);
-      };
-      const [hours, setHours] = React.useState();
       return (
         <div>
-          <h1>Super Converter</h1>
-          <label htmlFor="minutes">Minutes</label>
-          <input
-            value={minutes}
-            id="minutes"
-            placeholder="Minutes"
-            type="number"
-            onChange={onChange}
-          />
-          <h4>You want to convert {minutes}</h4>
-          <label htmlFor="hours">Hours</label>
-          <input id="hours" placeholder="Hours" type="number" />
+          <Btn text="Save Changes" fontSize={18} />
+          <Btn text="Save Changes"  />
         </div>
       );
     }
+    const root = document.getElementById("root");
     ReactDOM.createRoot(root).render(<App />);
   </script>
 </html>
