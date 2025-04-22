@@ -12,6 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/hello" element={<h2>Hel1lo</h2>}></Route>
         <Route path="/movie" element={<Detail />} />
         <Route path="/" element={<Home />} />
       </Routes>
